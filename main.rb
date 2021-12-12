@@ -1,6 +1,7 @@
 require 'dxopal'
 require_remote "defender/defenderA.rb"
 require_remote "enemy/enemyA.rb"
+require_remote "placement_ui.rb"
 include DXOpal
 
 class Game
@@ -8,11 +9,28 @@ class Game
     @bullets = []
     @enemies = []
     @defenders = []
+    @objects = init_objects
   end
 
-  def get_items
+  def init_objects
     ret = []
-    ret.push(Sprite.new(0, 0, Image.new(640, 480).circle_fill(Window.width / 2, Window.height / 2, 50, [255, 255, 255])))
+
+    # 巣
+    ret.push(
+      Sprite.new(
+        0, 0,
+        Image.new(640, 480).
+        circle_fill(
+          Window.width / 2, Window.height / 2,
+          50, [255, 255, 255]
+        )
+      )
+    )
+
+    # ドラッグドロップするUI
+    ret.push(
+      PlacementUI.new(self)
+    )
     ret
   end
 
@@ -20,20 +38,25 @@ class Game
     @bullets.push(bullet)
   end
 
+  def add_object(object)
+    @objects.push(object)
+  end
+
+  def add_defender(defender)
+    @defenders.push(defender)
+  end
+
   def run
-    objects = get_items
     @enemies.push(EnemyA.new(0, 240))
-    sprites = [@bullets, @enemies, @defenders, objects]
+    sprites = [@bullets, @enemies, @defenders, @objects]
     @defenders.push(DefenderA.new(200, 240, self))
     Window.loop do
-      # [TODO]マウスを用いてdefenderを配置する処理
-
       Sprite.check(@enemies, @defenders)
       Sprite.check(@enemies, @bullets)
       Sprite.update(@enemies)
       Sprite.update(@bullets)
       Sprite.update(@defenders)
-      Sprite.update(objects)
+      Sprite.update(@objects)
       Sprite.draw(sprites)
     end
   end

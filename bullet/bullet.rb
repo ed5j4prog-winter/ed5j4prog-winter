@@ -6,7 +6,8 @@ class Bullet < Sprite
     super(x, y, image)
   end
 
-  def hit(other)
+  # Enemyと当たったとき呼ばれる
+  def shot(other)
     other.attack(@damage)
     self.vanish
   end

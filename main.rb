@@ -70,7 +70,7 @@ class Game
     sprites = [background, @bullets, @enemies, @defenders, @objects]
     Window.loop do
       Sprite.check(@enemies, @defenders)
-      Sprite.check(@enemies, @bullets)
+      Sprite.check(@bullets, @enemies)
       Sprite.update(@enemies)
       Sprite.update(@bullets)
       Sprite.update(@defenders)

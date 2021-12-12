@@ -6,8 +6,14 @@ class Enemy < Sprite
     @drop = drop
   end
 
-  def hit(other)
-    other.attack(@damage)
+  # Defenderと当たったとき呼ばれる
+  def shot(defender)
+    defender.attack(@damage)
+  end
+
+  # Bulletと当たったとき呼ばれる
+  def hit(bullet)
+    # なにもしない
   end
 
   def attack(damage)

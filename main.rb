@@ -62,7 +62,8 @@ class Game
   end
 
   def run
-    sprites = [@bullets, @enemies, @defenders, @objects]
+    background = Sprite.new(0, 0, Image.new(Window.width, Window.height).fill([0, 120, 161]))
+    sprites = [background, @bullets, @enemies, @defenders, @objects]
     Window.loop do
       Sprite.check(@enemies, @defenders)
       Sprite.check(@enemies, @bullets)

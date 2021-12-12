@@ -1,4 +1,4 @@
-require_remote "enemy.rb"
+require_remote "enemy/enemy.rb"
 
 class EnemyA < Enemy
   def initialize(x, y)

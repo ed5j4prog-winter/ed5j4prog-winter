@@ -1,9 +1,6 @@
 require 'dxopal'
-require_remote "defenderA.rb"
-require_remote "enemyA.rb"
-require_remote "bulletA.rb"
-require_remote "enemy.rb"
-require_remote "bullet.rb"
+require_remote "defender/defenderA.rb"
+require_remote "enemy/enemyA.rb"
 include DXOpal
 
 class Game

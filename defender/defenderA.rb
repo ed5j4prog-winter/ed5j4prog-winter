@@ -1,5 +1,5 @@
-require_remote "defender.rb"
-require_remote "bulletA.rb"
+require_remote "defender/defender.rb"
+require_remote "bullet/bulletA.rb"
 
 class DefenderA < Defender
   def initialize(x, y, game)

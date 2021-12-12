@@ -1,4 +1,4 @@
-require_remote "bullet.rb"
+require_remote "bullet/bullet.rb"
 
 class BulletA < Bullet
   def initialize(x, y)

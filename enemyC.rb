@@ -1,10 +1,10 @@
 require_remote "enemy.rb"
 include Math
 
-class EnemyA < Enemy
+class EnemyC < Enemy
   def initialize(x, y)
-    image = Image.load('/images/Enemy/Enemy_00.png')
-    super(30, 10, 1, x, y, image) #hp, ダメージ, 報酬を定義
+    image = Image.load('/images/Enemy/Enemy_02.png')
+    super(80, 20, 5, x, y, image) #hp, ダメージ, 報酬を定義
   end
   
   def update

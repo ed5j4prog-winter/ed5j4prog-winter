@@ -1,10 +1,10 @@
 require_remote "enemy.rb"
 include Math
 
-class EnemyA < Enemy
+class EnemyE < Enemy
   def initialize(x, y)
-    image = Image.load('/images/Enemy/Enemy_00.png')
-    super(30, 10, 1, x, y, image) #hp, ダメージ, 報酬を定義
+    image = Image.load('/images/Enemy/Enemy_03.png')
+    super(100, 10, 6, x, y, image) #hp, ダメージ, 報酬を定義
   end
   
   def update
@@ -12,7 +12,7 @@ class EnemyA < Enemy
     direction = Math.atan2((240 - self.y),(320 - self.x)) * 180 / Math::PI
     self.angle = direction + 90
     # 中心に向かって移動
-    self.x += Math.cos(direction)
-    self.y += Math.sin(direction)
+    self.x += Math.cos(direction) / 2
+    self.y += Math.sin(direction) / 2
   end
 end

@@ -7,6 +7,7 @@ require_remote "enemy/enemyD.rb"
 require_remote "enemy/enemyE.rb"
 require_remote "enemy/enemyG.rb"
 require_remote "placement_ui.rb"
+require_remote "wave/wave1.rb"
 include DXOpal
 
 class Game
@@ -36,6 +37,11 @@ class Game
     ret.push(
       PlacementUI.new(self)
     )
+
+    # ウェーブ
+    ret.push(
+      Wave1.new(self)
+    )
     ret
   end
 
@@ -56,9 +62,7 @@ class Game
   end
 
   def run
-    @enemies.push(EnemyG.new(0, 240, self))
     sprites = [@bullets, @enemies, @defenders, @objects]
-    @defenders.push(DefenderA.new(200, 240, self))
     Window.loop do
       Sprite.check(@enemies, @defenders)
       Sprite.check(@enemies, @bullets)

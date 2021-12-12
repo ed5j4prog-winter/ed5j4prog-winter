@@ -12,5 +12,8 @@ class Wave2 < Wave
 
   def update
     super
+    if(@time % 60 == 1)
+      @game.add_enemy(EnemyA.new(0, 240))
+    end
   end
 end

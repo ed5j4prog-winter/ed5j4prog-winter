@@ -6,9 +6,11 @@ class Enemy < Sprite
     @drop = drop
   end
 
-  # Defenderと当たったとき呼ばれる
+  # Defender、または卵と当たったとき呼ばれる
   def shot(defender)
     defender.attack(@damage)
+    self.vanish if defender.type == "egg"
+      
   end
 
   # Bulletと当たったとき呼ばれる

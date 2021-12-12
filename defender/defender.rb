@@ -23,4 +23,8 @@ class Defender < Sprite
       self.vanish
     end
   end
+
+  def type
+    "defender"
+  end
 end

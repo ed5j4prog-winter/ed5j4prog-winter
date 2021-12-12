@@ -8,9 +8,9 @@ require_remote "enemy/enemyE.rb"
 require_remote "enemy/enemyG.rb"
 require_remote "placement_ui.rb"
 require_remote "wave/wave1.rb"
+require_remote "egg.rb"
+require_remote "egg_hp_bar.rb"
 include DXOpal
-
-Image.register(:egg, 'images/Egg/Egg_00.png')
 
 class Game
   def initialize
@@ -18,6 +18,7 @@ class Game
     @enemies = []
     @defenders = []
     @objects = init_objects
+    @game_over = false
   end
 
   def init_objects
@@ -26,14 +27,6 @@ class Game
     # ドラッグドロップするUI
     ret.push(
       PlacementUI.new(self)
-    )
-
-    # 巣
-    ret.push(
-      Sprite.new(
-        Window.width / 2 - 50, Window.height / 2 - 50,
-        Image[:egg]
-      )
     )
 
     # ウェーブ
@@ -59,6 +52,10 @@ class Game
     @enemies.push(enemy)
   end
 
+  def game_over
+    @game_over = true
+  end
+
   def run
     background = Sprite.new(
       0, 0,
@@ -67,15 +64,23 @@ class Game
         .circle_fill(Window.width / 2, Window.height / 2, 100, [0, 150, 161])
         .circle_fill(Window.width / 2, Window.height / 2, 30, [0, 120, 161])
     )
+    egg = Egg.new(self)
+    add_defender(egg)
+    add_object(EggHPBar.new(egg))
     sprites = [background, @bullets, @enemies, @defenders, @objects]
     Window.loop do
-      Sprite.check(@enemies, @defenders)
-      Sprite.check(@bullets, @enemies)
-      Sprite.update(@enemies)
-      Sprite.update(@bullets)
-      Sprite.update(@defenders)
-      Sprite.update(@objects)
+      if !@game_over
+        Sprite.check(@enemies, @defenders)
+        Sprite.check(@bullets, @enemies)
+        Sprite.update(@enemies)
+        Sprite.update(@bullets)
+        Sprite.update(@defenders)
+        Sprite.update(@objects)
+      end
       Sprite.draw(sprites)
+      if @game_over
+        Window.draw_font(200, 180, "ゲームオーバー...", Font.default)
+      end
     end
   end
 end

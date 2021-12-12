@@ -26,7 +26,7 @@ class OnMouceDefender < Sprite
   def create_object
     case @name
     when "DefenderA"
-      @game.add_defender(DefenderA.new(self.x, self.y, @game))
+      @game.add_defender(DefenderA.new(Input.mouse_pos_x + @width, Input.mouse_pos_y + @height, @game))
     else
       p "#{@name} is undefined defender."
     end

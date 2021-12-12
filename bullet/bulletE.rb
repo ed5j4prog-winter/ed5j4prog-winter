@@ -1,9 +1,9 @@
 require_remote "bullet/bullet.rb"
 
-class BulletA < Bullet
+class BulletE < Bullet
   def initialize(x, y, angle)
-    image = Image.load('/images/Bullet/Bullet_00.png')
-    super(10, x, y, angle, image) #ダメージを定義
+    image = Image.load('/images/Bullet/Bullet_04.png')
+    super(50, x, y, angle, image) #ダメージを定義
   end
   
   def update

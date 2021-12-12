@@ -1,9 +1,8 @@
 class Bullet < Sprite
-  def initialize(damage, x, y, image)
-    self.x = x
-    self.y = y
+  def initialize(damage, x, y, angle, image)
     @damage = damage
     super(x, y, image)
+    self.angle = angle
   end
 
   def hit(other)

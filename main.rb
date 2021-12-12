@@ -26,6 +26,8 @@ class Game
         )
       )
     )
+    
+
 
     # ドラッグドロップするUI
     ret.push(
@@ -57,7 +59,16 @@ class Game
       Sprite.update(@bullets)
       Sprite.update(@defenders)
       Sprite.update(@objects)
-      Sprite.draw(sprites)
+      Sprite.clean(@enemies)
+      Sprite.clean(@defenders)
+      Sprite.clean(@objects)
+      Sprite.clean(@bullets)
+      #Sprite.draw(sprites)
+      sprites.each do |sp|
+          sp.each do |s|
+              Window.draw_rot(s.x,s.y,s.image,s.angle)
+          end
+      end
     end
   end
 end

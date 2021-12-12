@@ -11,7 +11,7 @@ class PlacementUI < Sprite
   def initialize(game)
     @game = game
     @defenders = [
-      ["DefenderA", Image.new(40,40).circle_fill(20,20,10, [255,255,255])],
+      ["DefenderA", Image[:defender0]],
       ["DefenderA", Image.new(40,40).circle_fill(20,20,10, [255,255,255])],
       ["DefenderA", Image.new(40,40).circle_fill(20,20,10, [255,255,255])],
       ["DefenderA", Image.new(40,40).circle_fill(20,20,10, [255,255,255])],

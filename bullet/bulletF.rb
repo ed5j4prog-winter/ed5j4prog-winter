@@ -1,12 +1,13 @@
 require_remote "bullet/bullet.rb"
 
-class BulletA < Bullet
+class BulletF < Bullet
   def initialize(x, y, angle)
-    image = Image.load('/images/Bullet/Bullet_00.png')
-    super(10, x, y, angle, image) #ダメージを定義
+    image = Image.load('/images/Bullet/Bullet_05.png')
+    super(70, x, y, angle, image) #ダメージを定義
   end
   
   def update
+    # p self.angle
     self.x += Math.cos(self.angle/180 * Math::PI) / 2
     self.y += Math.sin(self.angle/180 * Math::PI) / 2
   end

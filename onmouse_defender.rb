@@ -1,7 +1,7 @@
 require 'dxopal'
 require_remote 'defender/defenderA.rb'
 class OnMouceDefender < Sprite
-  INNER_RANGE = 50
+  INNER_RANGE = 30
   OUTER_RANGE = 100
 
   def initialize(x, y, name, image, game)

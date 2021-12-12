@@ -10,6 +10,8 @@ require_remote "placement_ui.rb"
 require_remote "wave/wave1.rb"
 include DXOpal
 
+Image.register(:egg, 'images/Egg/Egg_00.png')
+
 class Game
   def initialize
     @bullets = []
@@ -21,21 +23,17 @@ class Game
   def init_objects
     ret = []
 
-    # 巣
-    ret.push(
-      Sprite.new(
-        0, 0,
-        Image.new(640, 480).
-        circle_fill(
-          Window.width / 2, Window.height / 2,
-          50, [255, 255, 255]
-        )
-      )
-    )
-
     # ドラッグドロップするUI
     ret.push(
       PlacementUI.new(self)
+    )
+
+    # 巣
+    ret.push(
+      Sprite.new(
+        Window.width / 2 - 50, Window.height / 2 - 50,
+        Image[:egg]
+      )
     )
 
     # ウェーブ
@@ -62,7 +60,13 @@ class Game
   end
 
   def run
-    background = Sprite.new(0, 0, Image.new(Window.width, Window.height).fill([0, 120, 161]))
+    background = Sprite.new(
+      0, 0,
+      Image.new(Window.width, Window.height)
+        .fill([0, 120, 161])
+        .circle_fill(Window.width / 2, Window.height / 2, 100, [0, 150, 161])
+        .circle_fill(Window.width / 2, Window.height / 2, 30, [0, 120, 161])
+    )
     sprites = [background, @bullets, @enemies, @defenders, @objects]
     Window.loop do
       Sprite.check(@enemies, @defenders)

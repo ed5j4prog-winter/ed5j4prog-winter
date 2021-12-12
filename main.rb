@@ -1,6 +1,11 @@
 require 'dxopal'
 require_remote "defender/defenderA.rb"
 require_remote "enemy/enemyA.rb"
+require_remote "enemy/enemyB.rb"
+require_remote "enemy/enemyC.rb"
+require_remote "enemy/enemyD.rb"
+require_remote "enemy/enemyE.rb"
+require_remote "enemy/enemyG.rb"
 require_remote "placement_ui.rb"
 include DXOpal
 
@@ -45,9 +50,13 @@ class Game
   def add_defender(defender)
     @defenders.push(defender)
   end
+  
+  def add_enemy(enemy)
+    @enemies.push(enemy)
+  end
 
   def run
-    @enemies.push(EnemyA.new(0, 240))
+    @enemies.push(EnemyG.new(0, 240, self))
     sprites = [@bullets, @enemies, @defenders, @objects]
     @defenders.push(DefenderA.new(200, 240, self))
     Window.loop do

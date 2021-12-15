@@ -49,7 +49,7 @@ class Game
   end
 
   def run
-    @enemies.push(EnemyA.new(0, 240))
+    @enemies.push(EnemyA.new(0, 200))
     sprites = [@bullets, @enemies, @defenders, @objects]
     @defenders.push(DefenderA.new(200, 240, self))
     Window.loop do

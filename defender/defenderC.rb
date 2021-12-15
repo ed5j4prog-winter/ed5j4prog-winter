@@ -5,7 +5,7 @@ include Math
 class DefenderC < Defender
   def initialize(x, y, game)
     image = Image.load('/images/Defender/Defender_02.png')
-    super(250, 1000, 2000, game, x, y, image) #hp, ダメージを定義(gameは入れといて)
+    super(80, 1000, 2000, game, x, y, image) #hp, ダメージを定義(gameは入れといて)
     @t = 0
     direction = Math.atan2((self.y + image.height - Window.height / 2),(self.x  + image.width - Window.width / 2))*180 / Math::PI
     self.angle = direction

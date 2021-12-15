@@ -5,7 +5,7 @@ include Math
 class DefenderA < Defender
   def initialize(x, y, game)
     image = Image.load('/images/Defender/Defender_00.png')
-    super(100, 1000, 1000, game, x, y, image) #hp, ダメージを定義(gameは入れといて)
+    super(30, 1000, 1000, game, x, y, image) #hp, ダメージを定義(gameは入れといて)
     @t = 0
     direction = Math.atan2((self.y + image.height - Window.height / 2),(self.x  + image.width - Window.width / 2))*180 / Math::PI
     self.angle = direction
@@ -17,6 +17,7 @@ class DefenderA < Defender
     @t += 1
     self.x += 50 / 4
     self.y += 40 / 4
+    
     if(@t % 80 == 0)
       shot(BulletA.new(self.x, self.y, self.angle))
     end

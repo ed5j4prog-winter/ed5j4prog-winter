@@ -9,7 +9,7 @@ class BulletG < Bullet
   
   def hit(other)
     if (@state >= 0)
-      image = Image.new(40,40).circle_fill(20,20,10, [255,255,255])
+      self.image = Image.new(40,40).circle_fill(20,20,20, [255,0,0])
       @state = 20
     else
       other.attack(@damage)

@@ -8,8 +8,6 @@ class EnemyA < Enemy
   end
   
   def update
-    p @hp
-    p self.y
     # 向きを中心方向に変更
     direction = Math.atan2((240 - self.y),(320 - self.x)) * 180 / Math::PI
     self.angle = direction + 90

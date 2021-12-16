@@ -7,6 +7,7 @@ class BulletE < Bullet
   end
   
   def update
+    super()
     self.x += Math.cos(self.angle/180 * Math::PI) / 2
     self.y += Math.sin(self.angle/180 * Math::PI) / 2
   end

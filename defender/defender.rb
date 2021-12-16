@@ -12,6 +12,7 @@ class Defender < Sprite
   end
 
   def hit(other)
+    p "defe"
     other.attack(@damage)
   end
 

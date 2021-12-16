@@ -7,8 +7,7 @@ class BulletA < Bullet
   end
   
   def update
-    #p self.x
-    #p self.y
+    super()
     self.x += Math.cos(self.angle/180 * Math::PI) / 2
     self.y += Math.sin(self.angle/180 * Math::PI) / 2
   end

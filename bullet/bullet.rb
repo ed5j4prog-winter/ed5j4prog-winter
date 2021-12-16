@@ -3,6 +3,7 @@ class Bullet < Sprite
     @damage = damage
     super(x, y, image)
     self.angle = angle
+    self.collision = [0,0,10]
   end
 
   def hit(other)
@@ -14,7 +15,7 @@ class Bullet < Sprite
   end
   
   def update
-    if self.x < 0 || self.x > Window.width || self.y < 0 || self.y > Window.height
+    if (self.x < 0 || self.x > Window.width || self.y < 0 || self.y > Window.height)
       self.vanish
     end
   end

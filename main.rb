@@ -10,15 +10,18 @@ require_remote "placement_ui.rb"
 require_remote "wave/wave1.rb"
 require_remote "egg.rb"
 require_remote "egg_hp_bar.rb"
+require_remote "money_text.rb"
 include DXOpal
 
 class Game
+  attr_reader :money
   def initialize
     @bullets = []
     @enemies = []
     @defenders = []
     @objects = init_objects
     @game_over = false
+    @money = 10000
   end
 
   def init_objects
@@ -33,6 +36,11 @@ class Game
     ret.push(
       Wave1.new(self)
     )
+
+    # 金
+    ret.push(
+      MoneyText.new(self)
+    )
     ret
   end
 
@@ -45,11 +53,21 @@ class Game
   end
 
   def add_defender(defender)
-    @defenders.push(defender)
+    @defenders.push(defender) if use_money(defender.cost)
   end
   
   def add_enemy(enemy)
     @enemies.push(enemy)
+  end
+
+  def use_money(money)
+    return false if @money < money
+    @money -= money
+    true
+  end
+
+  def get_money(money)
+    @money += money
   end
 
   def game_over
@@ -65,7 +83,7 @@ class Game
         .circle_fill(Window.width / 2, Window.height / 2, 30, [0, 120, 161])
     )
     egg = Egg.new(self)
-    add_defender(egg)
+    @defenders.push(egg)
     add_object(EggHPBar.new(egg))
     sprites = [background, @bullets, @enemies, @defenders, @objects]
     Window.loop do
@@ -76,6 +94,13 @@ class Game
         Sprite.update(@bullets)
         Sprite.update(@defenders)
         Sprite.update(@objects)
+        for enemy in @enemies do
+          get_money(enemy.drop) if enemy.vanished?
+        end
+        Sprite.clean(@enemies)
+        Sprite.clean(@bullets)
+        Sprite.clean(@defenders)
+        Sprite.clean(@objects)
       end
       Sprite.draw(sprites)
       if @game_over

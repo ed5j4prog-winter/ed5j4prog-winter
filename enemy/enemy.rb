@@ -1,4 +1,5 @@
 class Enemy < Sprite
+  attr_reader :drop
   def initialize(hp, damage, drop, x, y, image)
     super(x, y, image)
     @hp = hp

@@ -1,4 +1,5 @@
 class Defender < Sprite
+  attr_reader :cost
   def initialize(hp, damage, cost, game, x, y, image, collision = [0, 0, 20])
     @hp = hp
     @damage = damage

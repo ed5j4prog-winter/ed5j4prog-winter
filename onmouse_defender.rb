@@ -31,23 +31,25 @@ class OnMouceDefender < Sprite
   end
 
   def create_object
+    x = Input.mouse_pos_x
+    y = Input.mouse_pos_y
     case @name
     when "DefenderA"
-      @game.add_defender(DefenderA.new(Input.mouse_pos_x + @width, Input.mouse_pos_y + @height, @game))
+      @game.add_defender(DefenderA.new(x, y, @game))
     when "DefenderB"
-      @game.add_defender(DefenderB.new(Input.mouse_pos_x + @width, Input.mouse_pos_y + @height, @game))
+      @game.add_defender(DefenderB.new(x, y, @game))
     when "DefenderC"
-      @game.add_defender(DefenderC.new(Input.mouse_pos_x + @width, Input.mouse_pos_y + @height, @game))
+      @game.add_defender(DefenderC.new(x, y, @game))
     when "DefenderD"
-      @game.add_defender(DefenderD.new(Input.mouse_pos_x + @width, Input.mouse_pos_y + @height, @game))
+      @game.add_defender(DefenderD.new(x, y, @game))
     when "DefenderE"
-      @game.add_defender(DefenderE.new(Input.mouse_pos_x + @width, Input.mouse_pos_y + @height, @game))
+      @game.add_defender(DefenderE.new(x, y, @game))
     when "DefenderF"
-      @game.add_defender(DefenderF.new(Input.mouse_pos_x + @width, Input.mouse_pos_y + @height, @game))
+      @game.add_defender(DefenderF.new(x, y, @game))
     when "DefenderG"
-      @game.add_defender(DefenderG.new(Input.mouse_pos_x + @width, Input.mouse_pos_y + @height, @game))
+      @game.add_defender(DefenderG.new(x, y, @game))
     when "DefenderH"
-      @game.add_defender(DefenderH.new(Input.mouse_pos_x + @width, Input.mouse_pos_y + @height, @game))
+      @game.add_defender(DefenderH.new(x, y, @game))
     else
       p "#{@name} is undefined defender."
     end

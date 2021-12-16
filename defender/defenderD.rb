@@ -18,7 +18,7 @@ class DefenderD < Defender
     self.x += 50 / 4
     self.y += 40 / 4
     if(@t % 60 == 0)
-      shot(BulletD.new(self.x, self.y, self.angle))
+      shot_bullet(BulletD.new(self.x, self.y, self.angle))
     end
     self.x -= 50 / 4
     self.y -= 40 / 4

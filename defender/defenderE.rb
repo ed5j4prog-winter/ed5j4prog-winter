@@ -19,10 +19,10 @@ class DefenderE < Defender
     self.y += 40 / 4
     # double shot
     if(@t % 70 == 0)
-      shot(BulletE.new(self.x + ((Math.cos((self.angle + 90)/180 * Math::PI) / 2) * 20), 
+      shot_bullet(BulletE.new(self.x + ((Math.cos((self.angle + 90)/180 * Math::PI) / 2) * 20), 
       self.y + ((Math.sin((self.angle + 90)/180 * Math::PI) / 2) * 20), 
       self.angle))
-      shot(BulletE.new(self.x + ((Math.cos((self.angle - 90)/180 * Math::PI) / 2) * 20), 
+      shot_bullet(BulletE.new(self.x + ((Math.cos((self.angle - 90)/180 * Math::PI) / 2) * 20), 
       self.y + ((Math.sin((self.angle - 90)/180 * Math::PI) / 2) * 20), 
       self.angle))
     end

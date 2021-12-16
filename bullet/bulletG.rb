@@ -7,8 +7,9 @@ class BulletG < Bullet
     @state = 0
   end
   
-  def hit(other)
-    if (@state >= 0)
+  def shot(other)
+    p "shot(G) Called"
+    if (@state <= 0)
       self.image = Image.new(40,40).circle_fill(20,20,20, [255,0,0])
       self.collision = [20,20,20]
       @state = 20
@@ -18,7 +19,7 @@ class BulletG < Bullet
   end
   
   def update
-    if (@state >= 0)
+    if (@state <= 0)
       self.x += Math.cos(self.angle/180 * Math::PI) / 2
       self.y += Math.sin(self.angle/180 * Math::PI) / 2
     elsif (@state == 1)

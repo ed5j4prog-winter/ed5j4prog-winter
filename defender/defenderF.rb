@@ -19,9 +19,9 @@ class DefenderF < Defender
     self.y += 40 / 4
     # triple shot
     if(@t % 70 == 0)
-      shot(BulletF.new(self.x, self.y, self.angle))
-      shot(BulletF.new(self.x, self.y, self.angle + 30))
-      shot(BulletF.new(self.x, self.y, self.angle - 30))
+      shot_bullet(BulletF.new(self.x, self.y, self.angle))
+      shot_bullet(BulletF.new(self.x, self.y, self.angle + 30))
+      shot_bullet(BulletF.new(self.x, self.y, self.angle - 30))
     end
     self.x -= 50 / 4
     self.y -= 40 / 4

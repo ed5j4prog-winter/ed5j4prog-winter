@@ -8,6 +8,7 @@ class Bullet < Sprite
 
   # Enemyと当たったとき呼ばれる
   def shot(other)
+    p "shot(Base) Called"
     other.attack(@damage)
     self.vanish
   end
@@ -16,7 +17,7 @@ class Bullet < Sprite
   end
   
   def update
-    if (self.x < 0 || self.x > Window.width || self.y < 0 || self.y > Window.height)
+    if (self.x < 30 || self.x > Window.width - 30 || self.y < -20 || self.y > Window.height + 20)
       self.vanish
     end
   end

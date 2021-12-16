@@ -9,6 +9,14 @@ class EnemyG < Enemy
     @game = game
   end
   
+  def attack(damage)
+    @hp -= damage
+    if(@hp <= 0)
+      @game.game_clear
+      self.vanish
+    end
+  end
+  
   def update
     # 向きを中心方向に変更
     direction = Math.atan2((240 - self.y),(320 - self.x)) * 180 / Math::PI

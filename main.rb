@@ -36,7 +36,7 @@ class Game
 
     # ウェーブ
     ret.push(
-      Wave1.new(self)
+      Wave10.new(self)
     )
 
     # 金
@@ -79,6 +79,10 @@ class Game
   def game_over
     @game_over = true
   end
+  
+  def game_clear
+    @game_clear = true
+  end
 
   def run
     background = Sprite.new(
@@ -93,7 +97,7 @@ class Game
     add_object(EggHPBar.new(egg))
     sprites = [background, @bullets, @enemies, @defenders, @objects]
     Window.loop do
-      if !@game_over
+      if !@game_over && !@game_clear
         Sprite.check(@enemies, @defenders)
         Sprite.check(@bullets, @enemies)
         Sprite.update(@enemies)
@@ -119,6 +123,9 @@ class Game
       end
       if @game_over
         Window.draw_font(200, 180, "ゲームオーバー...", Font.default)
+      end
+      if @game_clear
+        Window.draw_font(200, 180, "ゲームクリアー！！", Font.default)
       end
     end
   end

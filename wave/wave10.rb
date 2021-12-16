@@ -13,7 +13,7 @@ class Wave10 < Wave
   def update
     super
     if(@time == 1)
-      @game.add_enemy(EnemyG.new(320, 10))
+      @game.add_enemy(EnemyG.new(320, 10, @game))
     end
   end
 end

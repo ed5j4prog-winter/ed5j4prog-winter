@@ -4,7 +4,7 @@ require_remote "enemy/enemyA.rb"
 
 class Wave1 < Wave
   def initialize(game)
-    super(5 * 60, Wave2.new(game), game, false)
+    super(20 * 60, Wave2.new(game), game, false)
     @game = game
     start()
   end
@@ -16,7 +16,9 @@ class Wave1 < Wave
   def update
     super
     if(@time == 1)
-      @game.add_enemy(EnemyA.new(0, 240))
+      for i in 0..9 do
+        @game.add_enemy(EnemyA.new(rand(0..100), rand(0..100)))
+      end
     end
   end
 end

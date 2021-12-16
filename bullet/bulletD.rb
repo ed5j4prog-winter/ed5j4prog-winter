@@ -8,7 +8,7 @@ class BulletD < Bullet
   
   def update
     super()
-    self.x += Math.cos(self.angle) / 2
-    self.y += Math.sin(self.angle) / 2
+    self.x += Math.cos(self.angle/180 * Math::PI) / 2
+    self.y += Math.sin(self.angle/180 * Math::PI) / 2
   end
 end

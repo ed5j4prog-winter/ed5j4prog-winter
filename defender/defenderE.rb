@@ -9,7 +9,6 @@ class DefenderE < Defender
     @t = 0
     direction = Math.atan2((self.y + image.height - Window.height / 2),(self.x  + image.width - Window.width / 2))*180 / Math::PI
     self.angle = direction
-    p self.angle
     self.x -= 50 / 2
     self.y -= 40 / 2
   end

@@ -3,7 +3,7 @@ class Bullet < Sprite
     @damage = damage
     super(x, y, image)
     self.angle = angle
-    self.collision = [0,0,10]
+    self.collision = [12,10,5]
   end
 
   def hit(other)

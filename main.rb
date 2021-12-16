@@ -21,7 +21,7 @@ class Game
     @defenders = []
     @objects = init_objects
     @game_over = false
-    @money = 10000
+    @money = 100
   end
 
   def init_objects

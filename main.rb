@@ -47,6 +47,10 @@ class Game
   def add_bullet(bullet)
     @bullets.push(bullet)
   end
+  
+  def add_enemy(enemy)
+    @enemies.push(enemy)
+  end
 
   def add_object(object)
     @objects.push(object)

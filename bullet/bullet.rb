@@ -1,9 +1,9 @@
 class Bullet < Sprite
-  def initialize(damage, x, y, image)
-    self.x = x
-    self.y = y
+  def initialize(damage, x, y, angle, image)
     @damage = damage
     super(x, y, image)
+    self.angle = angle
+    self.collision = [12,10,5]
   end
 
   # Enemyと当たったとき呼ばれる
@@ -13,5 +13,11 @@ class Bullet < Sprite
   end
 
   def attack(damage)
+  end
+  
+  def update
+    if (self.x < 0 || self.x > Window.width || self.y < 0 || self.y > Window.height)
+      self.vanish
+    end
   end
 end

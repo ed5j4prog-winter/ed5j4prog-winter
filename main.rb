@@ -31,6 +31,8 @@ class Game
     ret.push(
       PlacementUI.new(self)
     )
+    
+
 
     # ウェーブ
     ret.push(
@@ -106,7 +108,11 @@ class Game
         Sprite.clean(@defenders)
         Sprite.clean(@objects)
       end
-      Sprite.draw(sprites)
+      sprites.each do |sp|
+          sp.each do |s|
+              Window.draw_rot(s.x,s.y,s.image,s.angle)
+          end
+      end
       if @game_over
         Window.draw_font(200, 180, "ゲームオーバー...", Font.default)
       end

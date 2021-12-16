@@ -2,6 +2,13 @@ require 'dxopal'
 require_remote 'onmouse_defender.rb'
 
 Image.register(:defender0, 'images/Defender/Defender_00.png')
+Image.register(:defender1, 'images/Defender/Defender_01.png')
+Image.register(:defender2, 'images/Defender/Defender_02.png')
+Image.register(:defender3, 'images/Defender/Defender_03.png')
+Image.register(:defender4, 'images/Defender/Defender_04.png')
+Image.register(:defender5, 'images/Defender/Defender_05.png')
+Image.register(:defender6, 'images/Defender/Defender_06.png')
+Image.register(:defender7, 'images/Defender/Defender_07.png')
 
 class PlacementUI < Sprite
   WIDTH = 80
@@ -11,14 +18,14 @@ class PlacementUI < Sprite
   def initialize(game)
     @game = game
     @defenders = [
-      ["DefenderA", Image.new(40,40).circle_fill(20,20,10, [255,255,255])],
-      ["DefenderA", Image.new(40,40).circle_fill(20,20,10, [255,255,255])],
-      ["DefenderA", Image.new(40,40).circle_fill(20,20,10, [255,255,255])],
-      ["DefenderA", Image.new(40,40).circle_fill(20,20,10, [255,255,255])],
-      ["DefenderA", Image.new(40,40).circle_fill(20,20,10, [255,255,255])],
-      ["DefenderA", Image.new(40,40).circle_fill(20,20,10, [255,255,255])],
-      ["DefenderA", Image.new(40,40).circle_fill(20,20,10, [255,255,255])],
-      ["DefenderA", Image.new(40,40).circle_fill(20,20,10, [255,255,255])],
+      ["DefenderA", Image[:defender0]],
+      ["DefenderB", Image[:defender1]],
+      ["DefenderC", Image[:defender2]],
+      ["DefenderD", Image[:defender3]],
+      ["DefenderE", Image[:defender4]],
+      ["DefenderF", Image[:defender5]],
+      ["DefenderG", Image[:defender6]],
+      ["DefenderH", Image[:defender7]],
     ]
     img = init_apperance
     @onmouse_defender = nil

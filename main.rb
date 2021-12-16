@@ -109,9 +109,13 @@ class Game
         Sprite.clean(@objects)
       end
       sprites.each do |sp|
+        if sp.is_a?(Array)
           sp.each do |s|
               Window.draw_rot(s.x,s.y,s.image,s.angle)
           end
+        else
+          Window.draw_rot(sp.x,sp.y,sp.image,sp.angle)
+        end
       end
       if @game_over
         Window.draw_font(200, 180, "ゲームオーバー...", Font.default)

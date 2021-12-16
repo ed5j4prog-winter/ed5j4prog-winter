@@ -21,6 +21,7 @@ class PlacementUI < Sprite
       ["DefenderA", Image.new(40,40).circle_fill(20,20,10, [255,255,255])],
     ]
     img = init_apperance
+    @onmouse_defender = nil
 
     super(0, 0, img)
   end
@@ -57,7 +58,11 @@ class PlacementUI < Sprite
       y = Input.mouse_pos_y
       index = get_index(x, y)
       return if index == -1
-      @game.add_object(OnMouceDefender.new(x, y, @defenders[index][0], @defenders[index][1], @game))
+      if(@onmouse_defender != nil && !@onmouse_defender.vanished?)
+        @onmouse_defender.vanish
+      end
+      @onmouse_defender = OnMouceDefender.new(x, y, @defenders[index][0], @defenders[index][1], @game)
+      @game.add_object(@onmouse_defender)
     end
   end
 

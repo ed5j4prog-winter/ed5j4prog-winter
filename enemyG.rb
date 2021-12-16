@@ -16,8 +16,8 @@ class EnemyG < Enemy
     # 巣の周りをまわる
     self.x += Math.cos((direction + 88) / 180 * Math::PI)
     self.y += Math.sin((direction + 88) / 180 * Math::PI)
-    # ザコ(enemyA)を召喚
-    if @time % 300 == 0
+    # ザコを召喚
+    if @time % 300 == 100
         @game.add_enemy(EnemyA.new(self.x, self.y))
     end
     @time += 1

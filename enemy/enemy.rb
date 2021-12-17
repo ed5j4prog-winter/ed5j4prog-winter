@@ -10,8 +10,11 @@ class Enemy < Sprite
   # Defender、または卵と当たったとき呼ばれる
   def shot(defender)
     defender.attack(@damage)
-    self.vanish if defender.type == "egg"
-      
+    if defender.type == "egg"
+        #p self.x
+        #p self.y
+        self.vanish
+    end
   end
 
   # Bulletと当たったとき呼ばれる

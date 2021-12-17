@@ -6,7 +6,7 @@ class Egg < Sprite
     @hp = @max_hp
     @game = game
     super(Window.width / 2 - 50, Window.height / 2 - 50, Image[:egg])
-    self.collision = [0, 0, 55]
+    self.collision = [50, 40, 20]
   end
 
   def attack(damage)

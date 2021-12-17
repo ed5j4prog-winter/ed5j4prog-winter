@@ -36,7 +36,7 @@ class Game
 
     # ウェーブ
     ret.push(
-      Wave10.new(self)
+      Wave1.new(self)
     )
 
     # 金

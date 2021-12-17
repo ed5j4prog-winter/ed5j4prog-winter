@@ -20,7 +20,7 @@ class Wave6 < Wave
         @game.add_enemy(EnemyD.new(rand(540..640), rand(0..100)))
       end
     end
-    if(@time == 10)
+    if(@time == 10 * 60)
       for i in 0..2 do
         @game.add_enemy(EnemyD.new(rand(0..100), rand(380..480)))
         @game.add_enemy(EnemyD.new(rand(280..360), 480))

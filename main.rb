@@ -21,7 +21,7 @@ class Game
     @defenders = []
     @objects = init_objects
     @game_over = false
-    @money = 1000
+    @money = 100
   end
 
   def init_objects
@@ -36,7 +36,7 @@ class Game
 
     # ウェーブ
     ret.push(
-      Wave9.new(self)
+      Wave1.new(self)
     )
 
     # 金

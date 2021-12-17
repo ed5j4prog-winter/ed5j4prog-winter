@@ -21,7 +21,7 @@ class Game
     @defenders = []
     @objects = init_objects
     @game_over = false
-    @money = 100
+    @money = 1000
   end
 
   def init_objects
@@ -36,7 +36,7 @@ class Game
 
     # ウェーブ
     ret.push(
-      Wave1.new(self)
+      Wave9.new(self)
     )
 
     # 金
@@ -84,32 +84,82 @@ class Game
     @game_clear = true
   end
 
-  def check(arr1, arr2, r)
-
+  def calc_n(x, y, n)
+    angle = Math.atan2((240 - y),(320 - x)) * 180 / Math::PI
+    (angle / 360 * n + n) % n
   end
 
+  def calc_m(x, y, m)
+    max_dx = 320 - 50
+    max_dy = 240
+    max_d = max_dx * max_dx + max_dy * max_dy + 1
+    dy = 240 - y
+    dx = 320 - x
+    d = dy * dy + dx * dx
+    (1.0 * d / max_d * m) % m
+  end
+
+  N = 16
+  M = 8
   def check(arr1, arr2)
-    arr1.each do |obj1|
-      arr2.each do |obj2|
-        dx = obj1.x - obj2.x
-        dy = obj1.y - obj2.y
-        d = dx * dx + dy * dy
-        r = obj1.collision[2] + obj2.collision[2]
-        if(d <= r * r)
-          obj1.shot(obj2) if defined? obj1.shot
-          obj2.hit(obj1) if defined? obj2.hit
-        end
+    # 中心から見た角度によって領域をN個に分割し、
+    # 中心からの距離によってN領域をそれぞれM個に分割し、
+    # 同じ / 隣の領域にあるもの同士のみ当たり判定を計算する(軽量化)
+    rads1 = []
+    rads2 = []
+    N.times do |i|
+      rads1.push([])
+      rads2.push([])
+      M.times do
+        rads1[i].push([])
+        rads2[i].push([])
       end
     end
-  end
+    arr1.each do |obj|
+      m = calc_m(obj.x, obj.y, M)
+      # 中心付近にあるものは例外 m = 0 の 全領域に所属
+      if(m == 0)
+        N.times do |i|
+          rads1[i][0].push(obj)
+        end
+      else
+        rads1[calc_n(obj.x, obj.y, N)][m].push(obj)
+      end
+    end
 
-  def egg_check(egg, r)
-    @enemies.each do |enemy|
-      dx = 320 - enemy.x
-      dy = 240 - enemy.y
-      d = dx * dx + dy * dy
-      if(d <= r * r)
-        enemy.shot(egg)
+    arr2.each do |obj|
+      m = calc_m(obj.x, obj.y, M)
+      if(m == 0)
+        N.times do |i|
+          rads2[i][0].push(obj)
+        end
+      else
+        rads2[calc_n(obj.x, obj.y, N)][m].push(obj)
+      end
+    end
+    
+    N.times do |n|
+      M.times do |m|
+        rads1[n][m].each do |obj1|
+          i = (n - 1 + N) % N
+          m_min = m > 0 ? m - 1 : 0
+          m_max = m == M - 1 ? M - 1 : m + 1
+          3.times do
+            (m_min..m_max).each do |j|
+              rads2[i][j].each do |obj2|
+                dx = obj1.x - obj2.x
+                dy = obj1.y - obj2.y
+                d = dx * dx + dy * dy
+                r = obj1.collision[2] + obj2.collision[2]
+                if(d <= r * r)
+                  obj1.shot(obj2) if defined? obj1.shot
+                  obj2.hit(obj1) if defined? obj2.hit
+                end
+              end
+            end
+            i = (i + 1 + N) % N
+          end
+        end
       end
     end
   end
@@ -123,8 +173,6 @@ class Game
         .circle_fill(Window.width / 2, Window.height / 2, 30, [128, 128, 0])
     )
     egg = Egg.new(self)
-    p egg.x
-    p egg.y
     @defenders.push(egg)
     add_object(EggHPBar.new(egg))
     sprites = [background, @bullets, @enemies, @defenders, @objects]

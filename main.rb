@@ -118,9 +118,9 @@ class Game
     background = Sprite.new(
       0, 0,
       Image.new(Window.width, Window.height)
-        .fill([0, 120, 161])
-        .circle_fill(Window.width / 2, Window.height / 2, 100, [0, 150, 161])
-        .circle_fill(Window.width / 2, Window.height / 2, 30, [0, 120, 161])
+        .fill([0 ,204 ,255])
+        .circle_fill(Window.width / 2, Window.height / 2, 100, [0, 128, 0])
+        .circle_fill(Window.width / 2, Window.height / 2, 30, [128, 128, 0])
     )
     egg = Egg.new(self)
     p egg.x
@@ -155,10 +155,12 @@ class Game
         end
       end
       if @game_over
-        Window.draw_font(200, 180, "ゲームオーバー...", Font.default)
+        Window.draw_font(222, 362, "ゲームオーバー...", Font.default, {color: [0, 0, 0]})
+        Window.draw_font(220, 360, "ゲームオーバー...", Font.default)
       end
       if @game_clear
-        Window.draw_font(200, 180, "ゲームクリアー！！", Font.default)
+        Window.draw_font(222, 362, "ゲームクリアー！！", Font.default, {color: [0, 0, 0]})
+        Window.draw_font(220, 360, "ゲームクリアー！！", Font.default)
       end
     end
   end

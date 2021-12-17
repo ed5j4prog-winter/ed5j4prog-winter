@@ -18,14 +18,14 @@ class PlacementUI < Sprite
   def initialize(game)
     @game = game
     @defenders = [
-      ["DefenderA", Image[:defender0]],
-      ["DefenderB", Image[:defender1]],
-      ["DefenderC", Image[:defender2]],
-      ["DefenderD", Image[:defender3]],
-      ["DefenderE", Image[:defender4]],
-      ["DefenderF", Image[:defender5]],
-      ["DefenderG", Image[:defender6]],
-      ["DefenderH", Image[:defender7]],
+      ["DefenderA", Image[:defender0], 10],
+      ["DefenderB", Image[:defender1], 15],
+      ["DefenderC", Image[:defender2], 20],
+      ["DefenderD", Image[:defender3], 25],
+      ["DefenderE", Image[:defender4], 20],
+      ["DefenderF", Image[:defender5], 20],
+      ["DefenderG", Image[:defender6], 20],
+      ["DefenderH", Image[:defender7], 20],
     ]
     img = init_apperance
     @onmouse_defender = nil
@@ -51,10 +51,12 @@ class PlacementUI < Sprite
 
     @defenders.each_with_index do |defender, i|
       image = defender[1]
+      text = defender[2]
       x = WIDTH / 2 if i < NUM_VERTICAL
       x = w - WIDTH / 2 if i >= NUM_VERTICAL
       y = (i % NUM_VERTICAL) * h / NUM_VERTICAL + h / NUM_VERTICAL / 2
       img.draw(x - image.width / 2, y - image.height / 2, image)
+      img.draw_font(x - WIDTH / 2 + 5, y + h / NUM_VERTICAL / 2 - 21, "#{text}", Font.new(16))
     end
     img
   end

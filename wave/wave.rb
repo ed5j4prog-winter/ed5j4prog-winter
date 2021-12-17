@@ -15,5 +15,9 @@ class Wave < Sprite
       @nextwave.start
       self.vanish
     end
+    self.image = Image.new(Window.width, Window.height)
+    text = self.class.name.split("::")[1]
+    self.image.draw_font(102, 42, "#{text}", Font.default, [0,0,0])
+    self.image.draw_font(100, 40, "#{text}", Font.default)
   end
 end

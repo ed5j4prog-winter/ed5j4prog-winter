@@ -6,18 +6,12 @@ class DefenderH < Defender
     image = Image.load('/images/Defender/Defender_07.png')
     super(500, 1000, 20, game, x, y, image) #hp, ダメージを定義(gameは入れといて)
     @t = 0
-    direction = Math.atan2((self.y + image.height - Window.height / 2),(self.x  + image.width - Window.width / 2))*180 / Math::PI
+    direction = Math.atan2((self.y - Window.height / 2),(self.x - Window.width / 2)) *180 / Math::PI
     self.angle = direction
-    self.x -= 50 / 2
-    self.y -= 40 / 2
     #サイズを大きく
   end
 
   def update
     @t += 1
-    self.x += 50 / 4
-    self.y += 40 / 4
-    self.x -= 50 / 4
-    self.y -= 40 / 4
   end
 end

@@ -8,7 +8,6 @@ class BulletG < Bullet
   end
   
   def shot(other)
-    p "shot(G) Called"
     if (@state <= 0)
       self.image = Image.new(40,40).circle_fill(20,20,20, [255,0,0])
       self.collision = [20,20,20]

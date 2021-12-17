@@ -7,16 +7,12 @@ class DefenderE < Defender
     image = Image.load('/images/Defender/Defender_04.png')
     super(50, 1000, 20, game, x, y, image) #hp, ダメージを定義(gameは入れといて)
     @t = 0
-    direction = Math.atan2((self.y + image.height - Window.height / 2),(self.x  + image.width - Window.width / 2))*180 / Math::PI
+    direction = Math.atan2((self.y - Window.height / 2),(self.x - Window.width / 2)) *180 / Math::PI
     self.angle = direction
-    self.x -= 50 / 2
-    self.y -= 40 / 2
   end
 
   def update
     @t += 1
-    self.x += 50 / 4
-    self.y += 40 / 4
     # double shot
     if(@t % 70 == 0)
       shot_bullet(BulletE.new(self.x + ((Math.cos((self.angle + 90)/180 * Math::PI) / 2) * 20), 
@@ -26,7 +22,5 @@ class DefenderE < Defender
       self.y + ((Math.sin((self.angle - 90)/180 * Math::PI) / 2) * 20), 
       self.angle))
     end
-    self.x -= 50 / 4
-    self.y -= 40 / 4
   end
 end

@@ -20,8 +20,8 @@ class OnMouceDefender < Sprite
   end
 
   def update
-    self.x = Input.mouse_pos_x - @width / 2
-    self.y = Input.mouse_pos_y - @height / 2
+    self.x = Input.mouse_pos_x
+    self.y = Input.mouse_pos_y 
     if(Input.mouse_push?(M_LBUTTON))
       create_object() if inrange?
     end
@@ -31,8 +31,8 @@ class OnMouceDefender < Sprite
   end
 
   def create_object
-    x = Input.mouse_pos_x
-    y = Input.mouse_pos_y
+    x = self.x
+    y = self.y
     case @name
     when "DefenderA"
       @game.add_defender(DefenderA.new(x, y, @game))
@@ -60,5 +60,9 @@ class OnMouceDefender < Sprite
     dy = Window.height / 2 - Input.mouse_pos_y
     dx * dx + dy * dy <= OUTER_RANGE * OUTER_RANGE &&
     dx * dx + dy * dy > INNER_RANGE * INNER_RANGE
+  end
+
+  def offset
+    {x: -25, y: -20}
   end
 end

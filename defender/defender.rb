@@ -28,4 +28,8 @@ class Defender < Sprite
   def type
     "defender"
   end
+
+  def offset
+    {x: -25, y: -20}
+  end
 end

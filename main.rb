@@ -84,6 +84,36 @@ class Game
     @game_clear = true
   end
 
+  def check(arr1, arr2, r)
+
+  end
+
+  def check(arr1, arr2)
+    arr1.each do |obj1|
+      arr2.each do |obj2|
+        dx = obj1.x - obj2.x
+        dy = obj1.y - obj2.y
+        d = dx * dx + dy * dy
+        r = obj1.collision[2] + obj2.collision[2]
+        if(d <= r * r)
+          obj1.shot(obj2) if defined? obj1.shot
+          obj2.hit(obj1) if defined? obj2.hit
+        end
+      end
+    end
+  end
+
+  def egg_check(egg, r)
+    @enemies.each do |enemy|
+      dx = 320 - enemy.x
+      dy = 240 - enemy.y
+      d = dx * dx + dy * dy
+      if(d <= r * r)
+        enemy.shot(egg)
+      end
+    end
+  end
+
   def run
     background = Sprite.new(
       0, 0,
@@ -93,13 +123,15 @@ class Game
         .circle_fill(Window.width / 2, Window.height / 2, 30, [0, 120, 161])
     )
     egg = Egg.new(self)
+    p egg.x
+    p egg.y
     @defenders.push(egg)
     add_object(EggHPBar.new(egg))
     sprites = [background, @bullets, @enemies, @defenders, @objects]
     Window.loop do
       if !@game_over && !@game_clear
-        Sprite.check(@enemies, @defenders)
-        Sprite.check(@bullets, @enemies)
+        check(@enemies, @defenders)
+        check(@bullets, @enemies)
         Sprite.update(@enemies)
         Sprite.update(@bullets)
         Sprite.update(@defenders)
@@ -115,7 +147,8 @@ class Game
       sprites.each do |sp|
         if sp.is_a?(Array)
           sp.each do |s|
-              Window.draw_rot(s.x,s.y,s.image,s.angle)
+            Window.draw_rot(s.x,s.y,s.image,s.angle) if !defined? s.offset
+            Window.draw_rot(s.x + s.offset[:x],s.y + s.offset[:y],s.image,s.angle) if defined? s.offset
           end
         else
           Window.draw_rot(sp.x,sp.y,sp.image,sp.angle)

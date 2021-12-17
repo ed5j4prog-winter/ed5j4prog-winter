@@ -5,6 +5,7 @@ class Enemy < Sprite
     @hp = hp
     @damage = damage
     @drop = drop
+    self.collision = [25, 20, 10]
   end
 
   # Defender、または卵と当たったとき呼ばれる
@@ -27,5 +28,9 @@ class Enemy < Sprite
     if(@hp <= 0)
       self.vanish
     end
+  end
+
+  def offset
+    {x: -25, y: -20}
   end
 end
